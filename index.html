@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Промокотики — лаборатория концепций</title>
+<style>
+:root{--ink:#35251b;--muted:#77665a;--cream:#fbf5eb;--paper:#fffdf8;--line:#eadbc8;--orange:#ed7b22;--red:#d7193f}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--ink);font:15px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+header{padding:28px max(22px,calc((100vw - 1240px)/2));background:radial-gradient(ellipse at 80% 0%,#ffe2b6 0,transparent 36%),linear-gradient(135deg,#fffaf1,#f8ecda);border-bottom:1px solid var(--line)}
+.topline{display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{font-weight:950;letter-spacing:-1.5px;font-size:clamp(25px,4vw,42px)}.brand span{color:var(--red)}.brand small{font-size:.52em;color:#75401e;letter-spacing:-.5px;margin-left:8px}
+.badge{border:1px solid #e6c7a2;background:#fff8ee;border-radius:99px;padding:7px 12px;font-size:12px;font-weight:800;white-space:nowrap}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:30px;padding:38px 0 18px}.eyebrow{text-transform:uppercase;letter-spacing:2px;font-size:11px;font-weight:900;color:#b86424}.hero h1{font-size:clamp(34px,5.2vw,62px);line-height:.99;letter-spacing:-2.6px;margin:12px 0 18px;max-width:650px}.hero p{max-width:570px;color:var(--muted);font-size:17px}.hero-art{min-height:230px;display:flex;align-items:center;justify-content:center;position:relative}.hero-art img{width:min(100%,600px);max-height:310px;object-fit:contain;filter:drop-shadow(0 18px 15px #8e54201b)}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}.btn{border:0;border-radius:12px;padding:12px 17px;font:inherit;font-weight:850;cursor:pointer;background:var(--red);color:#fff;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}.btn.secondary{background:#fffaf3;color:#583c27;border:1px solid var(--line)}
+main{max-width:1240px;margin:auto;padding:34px 22px 60px}.section-head{display:flex;justify-content:space-between;align-items:end;gap:18px;margin-bottom:18px}.section-head h2{font-size:clamp(24px,3vw,34px);letter-spacing:-1px;margin:0}.section-head p{margin:4px 0 0;color:var(--muted)}.count{font-size:12px;font-weight:800;color:#8a6e56}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0 24px}.filter{background:#fffaf3;border:1px solid var(--line);color:#65462d;padding:8px 13px;border-radius:99px;font-weight:750;cursor:pointer}.filter.active{background:#3b291e;color:#fff;border-color:#3b291e}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.concept{background:var(--paper);border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:0 5px 18px #583b1b08;transition:transform .22s,border-color .22s,box-shadow .22s;min-width:0}.concept:hover{transform:translateY(-4px);box-shadow:0 12px 30px #583b1b12}.concept.selected{border:2px solid var(--red);box-shadow:0 0 0 4px #d7193f15}.visual{height:245px;position:relative;display:flex;align-items:center;justify-content:center;padding:16px;overflow:hidden}.visual img{width:100%;height:100%;object-fit:contain;position:relative;z-index:1;transition:transform .3s,filter .3s}.concept:hover .visual img{transform:scale(1.035)}
+.v-soft{background:radial-gradient(ellipse at 50% 85%,#f2d6b4 0,transparent 48%),linear-gradient(145deg,#fffaf1,#f6e8d5)}.v-soft img{filter:drop-shadow(0 9px 6px #8b4e201c)}
+.v-brand{background:linear-gradient(145deg,#fff5e6,#f4dfc5)}.v-brand:before{content:"";position:absolute;inset:15px;border:1px solid #e9cba7;border-radius:16px}.v-brand img{filter:drop-shadow(0 8px 3px #7c401e22)}
+.v-playful{background:#fff0e3;background-image:radial-gradient(#f3c89d 1px,transparent 1px);background-size:13px 13px}.v-playful img{filter:saturate(1.08) drop-shadow(0 7px 0 #f0d3b6)}
+.v-minimal{background:#fff}.v-minimal:after{content:"";position:absolute;width:76%;height:70%;border:1px solid #eee0d0;border-radius:50%}.v-minimal img{filter:saturate(.88);opacity:.96}
+.v-editorial{background:#e9d5bb}.v-editorial:before{content:"ПРОМОКОТИК";position:absolute;top:15px;left:18px;font-size:10px;letter-spacing:3px;font-weight:900;color:#85512c}.v-editorial img{filter:drop-shadow(0 12px 7px #57311630)}
+.v-cute{background:linear-gradient(150deg,#fff8f4,#fbe2d3)}.v-cute:before{content:"";position:absolute;width:170px;height:170px;border-radius:50%;background:#ffe5d1}
+.tag{position:absolute;z-index:2;top:13px;right:13px;background:#fffdf7;border:1px solid #ead7c2;border-radius:99px;padding:5px 9px;font-size:10px;font-weight:900;color:#87522d}
+.card-body{padding:17px 18px 18px}.card-top{display:flex;justify-content:space-between;align-items:start;gap:10px}.card-body h3{font-size:19px;line-height:1.15;letter-spacing:-.5px;margin:0}.number{font-size:11px;color:#b67b4c;font-weight:900}.card-body p{color:var(--muted);font-size:13px;margin:9px 0 15px;min-height:58px}.traits{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}.traits span{font-size:11px;padding:5px 8px;border-radius:7px;background:#f7efe4;color:#775b42}.card-actions{display:flex;gap:8px}.card-actions button{flex:1;border-radius:10px;padding:10px 8px;font:inherit;font-size:12px;font-weight:850;cursor:pointer;border:1px solid var(--line);background:#fff;color:#583b27}.card-actions .choose{background:#3c2a1e;color:white;border-color:#3c2a1e}.concept.selected .card-actions .choose{background:var(--red);border-color:var(--red)}
+.compare{margin-top:34px;border:1px solid var(--line);border-radius:20px;background:#fffaf3;padding:clamp(18px,3vw,30px);display:grid;grid-template-columns:1fr 1fr;gap:25px;align-items:center}.compare h2{font-size:27px;letter-spacing:-1px;margin:0 0 8px}.compare p{color:var(--muted);margin:0 0 12px}.picked{border-radius:16px;background:#f6e9d8;min-height:200px;display:flex;align-items:center;justify-content:center;padding:15px}.picked img{width:100%;height:200px;object-fit:contain;filter:drop-shadow(0 10px 8px #7d4b241c)}.picked-empty{color:#8d7561;text-align:center;padding:20px}
+.notes{margin-top:24px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.note{padding:16px;border:1px solid var(--line);border-radius:14px;background:#fffdf8}.note strong{display:block;margin-bottom:5px}.note p{margin:0;color:var(--muted);font-size:13px}
+footer{border-top:1px solid var(--line);padding:22px;text-align:center;color:#8a7562;font-size:12px}
+.toast{position:fixed;bottom:20px;left:50%;transform:translate(-50%,20px);background:#38271c;color:white;padding:12px 18px;border-radius:12px;box-shadow:0 8px 30px #0002;opacity:0;pointer-events:none;transition:.25s;z-index:10}.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.hero{grid-template-columns:1fr .8fr}.visual{height:220px}}
+@media(max-width:620px){header{padding:20px 18px}.topline{align-items:flex-start}.badge{white-space:normal;text-align:center;max-width:130px}.hero{grid-template-columns:1fr;gap:0;padding-top:28px}.hero-art{min-height:160px;grid-row:1}.hero-art img{max-height:210px}.hero h1{font-size:42px}.hero p{font-size:15px}.grid{grid-template-columns:1fr}.visual{height:250px}.card-body p{min-height:0}.section-head{align-items:flex-start;flex-direction:column}.compare{grid-template-columns:1fr}.notes{grid-template-columns:1fr}.brand small{display:block;margin-left:0;font-size:12px;letter-spacing:0}}
+</style>
+</head>
+<body>
+<header>
+  <div class="topline"><div class="brand"><span>Hoff</span> <small>× Промокотики 🐾</small></div><div class="badge">КОНЦЕПТ-ЛАБОРАТОРИЯ · 2026</div></div>
+  <div class="hero">
+    <div>
+      <div class="eyebrow">Выбери характер маскота</div>
+      <h1>Один котик.<br>Много настроений.</h1>
+      <p>Здесь можно сравнить разные визуальные направления для Промокотика — от уютного рекламного 3D до более графичного и редакционного образа. Выбирай понравившиеся варианты и собирай направление для дальнейшей проработки.</p>
+      <div class="actions"><a class="btn" href="#concepts">Смотреть концепции ↓</a><a class="btn secondary" href="#selection">Сравнить выбранное</a></div>
+    </div>
+    <div class="hero-art"><img src="assets/a_clean_studio_style_3d_rendered_illustration_on.png" alt="Рыжий длиннотелый Промокотик"></div>
+  </div>
+</header>
+<main>
+  <section id="concepts">
+    <div class="section-head"><div><h2>Визуальные направления</h2><p>Это разные способы подачи одного утверждённого персонажа, а не новые персонажи.</p></div><div class="count" id="count">6 направлений</div></div>
+    <div class="filters" aria-label="Фильтр концепций">
+      <button class="filter active" data-filter="all">Все варианты</button><button class="filter" data-filter="3d">Объёмный 3D</button><button class="filter" data-filter="graphic">Графичная подача</button><button class="filter" data-filter="warm">Тёплый брендовый</button>
+    </div>
+    <div class="grid" id="grid">
+      <article class="concept" data-tags="3d warm" data-title="Уютный рекламный 3D" data-image="a_clean_studio_style_3d_rendered_illustration_on.png">
+        <div class="visual v-soft"><span class="tag">01 · базовый</span><img src="assets/a_clean_studio_style_3d_rendered_illustration_on.png" alt="Уютный рекламный 3D"></div>
+        <div class="card-body"><div class="card-top"><h3>Уютный рекламный 3D</h3><span class="number">01</span></div><p>Мягкий свет, выразительная шерсть и естественные тени. Самый близкий к полноценному рекламному персонажу.</p><div class="traits"><span>Объём</span><span>Уют</span><span>Премиально</span></div><div class="card-actions"><button class="choose">Выбрать</button><button class="details">Особенности</button></div></div>
+      </article>
+      <article class="concept" data-tags="3d warm" data-title="Фирменный 3D-персонаж" data-image="a_high_resolution_clean_png_transparent_backgroun.png">
+        <div class="visual v-brand"><span class="tag">02 · бренд</span><img src="assets/a_high_resolution_clean_png_transparent_backgroun.png" alt="Фирменный 3D-персонаж"></div>
+        <div class="card-body"><div class="card-top"><h3>Фирменный 3D-персонаж</h3><span class="number">02</span></div><p>Чистая иллюстрация на прозрачном фоне — удобно размещать у карточек товаров и краёв интерфейса.</p><div class="traits"><span>PNG</span><span>Интерфейс</span><span>Универсально</span></div><div class="card-actions"><button class="choose">Выбрать</button><button class="details">Особенности</button></div></div>
+      </article>
+      <article class="concept" data-tags="3d" data-title="Мимичный крупный план" data-image="a_high_quality_ultra_detailed_cute_3d_cgi_render.png">
+        <div class="visual v-cute"><span class="tag">03 · эмоции</span><img src="assets/a_high_quality_ultra_detailed_cute_3d_cgi_render.png" alt="Крупный план мордочки"></div>
+        <div class="card-body"><div class="card-top"><h3>Мимичный крупный план</h3><span class="number">03</span></div><p>Больше внимания мордочке и взгляду. Подходит для реакций, небольших подсказок и эмоциональных состояний.</p><div class="traits"><span>Эмоции</span><span>Реакции</span><span>Дружелюбно</span></div><div class="card-actions"><button class="choose">Выбрать</button><button class="details">Особенности</button></div></div>
+      </article>
+      <article class="concept" data-tags="3d graphic" data-title="Длиннотелый силуэт" data-image="wide_clean_png_like_render_on_a_transparent_backg.png">
+        <div class="visual v-minimal"><span class="tag">04 · силуэт</span><img src="assets/wide_clean_png_like_render_on_a_transparent_backg.png" alt="Длиннотелый котик"></div>
+        <div class="card-body"><div class="card-top"><h3>Длиннотелый силуэт</h3><span class="number">04</span></div><p>Главная особенность кота — тело-диванчик. Горизонтальный формат особенно хорошо работает у нижних краёв блоков.</p><div class="traits"><span>Узнаваемый силуэт</span><span>Широкий формат</span></div><div class="card-actions"><button class="choose">Выбрать</button><button class="details">Особенности</button></div></div>
+      </article>
+      <article class="concept" data-tags="graphic warm" data-title="Тёплая редакционная подача" data-image="a_clean_png_style_illustration_on_a_transparent_ch.png">
+        <div class="visual v-editorial"><span class="tag">05 · editorial</span><img src="assets/a_clean_png_style_illustration_on_a_transparent_ch.png" alt="Тёплая редакционная подача"></div>
+        <div class="card-body"><div class="card-top"><h3>Тёплая редакционная подача</h3><span class="number">05</span></div><p>Более дизайнерская, журнальная подача с акцентом на форму и цвет. Для презентаций и брендовых историй.</p><div class="traits"><span>Характер</span><span>Презентация</span><span>Тёплая палитра</span></div><div class="card-actions"><button class="choose">Выбрать</button><button class="details">Особенности</button></div></div>
+      </article>
+      <article class="concept" data-tags="warm graphic" data-title="Мягкий иллюстративный стиль" data-image="a_high_resolution_clean_png_transparent_backgroun.png">
+        <div class="visual v-playful"><span class="tag">06 · мягкий</span><img src="assets/a_high_resolution_clean_png_transparent_backgroun.png" alt="Мягкий иллюстративный стиль"></div>
+        <div class="card-body"><div class="card-top"><h3>Мягкий иллюстративный стиль</h3><span class="number">06</span></div><p>Чуть более игривое окружение и светлая палитра. Можно развивать в сторону стикеров и лёгких интерфейсных реакций.</p><div class="traits"><span>Игривость</span><span>Стикеры</span><span>Лёгкость</span></div><div class="card-actions"><button class="choose">Выбрать</button><button class="details">Особенности</button></div></div>
+      </article>
+    </div>
+  </section>
+  <section class="compare" id="selection">
+    <div><div class="eyebrow">Твой shortlist</div><h2>Собираем направление</h2><p id="selectionText">Нажми «Выбрать» на карточке, чтобы посмотреть концепцию крупнее. Можно переключаться между вариантами и сравнивать их.</p><div class="actions"><button class="btn" id="copyChoice">Скопировать выбранное</button><button class="btn secondary" id="reset">Сбросить</button></div></div>
+    <div class="picked" id="picked"><div class="picked-empty">Здесь появится выбранный Промокотик</div></div>
+  </section>
+  <section class="notes">
+    <div class="note"><strong>Что не меняем</strong><p>Рыжий полосатый окрас, длинное низкое тело, короткие лапы, кремовая мордочка и красная бирка со знаком процента.</p></div>
+    <div class="note"><strong>Что выбираем</strong><p>Характер света, степень объёмности, фон, подачу эмоций и то, насколько персонаж заметен в интерфейсе.</p></div>
+    <div class="note"><strong>Следующий шаг</strong><p>После выбора направления стоит закрепить эталонные ракурсы, эмоции и правила анимации, чтобы котик оставался узнаваемым.</p></div>
+  </section>
+</main>
+<footer>Промокотики · концепт-лаборатория. Демонстрационные визуальные направления, не официальный брендбук Hoff.</footer>
+<div class="toast" id="toast" role="status"></div>
+<script>
+const cards=[...document.querySelectorAll('.concept')], filters=[...document.querySelectorAll('.filter')];
+let selected=null; const toast=document.getElementById('toast');
+function notify(msg){toast.textContent=msg;toast.classList.add('show');clearTimeout(notify.t);notify.t=setTimeout(()=>toast.classList.remove('show'),2200)}
+function choose(card){selected=card;cards.forEach(c=>c.classList.toggle('selected',c===card));const img=document.createElement('img');img.src='assets/'+card.dataset.image;img.alt=card.dataset.title;const box=document.getElementById('picked');box.replaceChildren(img);document.getElementById('selectionText').textContent='Выбрано направление: «'+card.dataset.title+'». Это предварительный выбор — можно сменить его в любой момент.';document.getElementById('selection').scrollIntoView({behavior:'smooth',block:'center'});}
+cards.forEach(card=>{card.querySelector('.choose').addEventListener('click',()=>choose(card));card.querySelector('.details').addEventListener('click',()=>{notify(card.dataset.title+': '+card.querySelector('.card-body p').textContent);});});
+filters.forEach(btn=>btn.addEventListener('click',()=>{filters.forEach(b=>b.classList.toggle('active',b===btn));let n=0;cards.forEach(card=>{const show=btn.dataset.filter==='all'||card.dataset.tags.split(' ').includes(btn.dataset.filter);card.hidden=!show;if(show)n++});document.getElementById('count').textContent=n+' '+(n===1?'направление':'направления');}));
+document.getElementById('reset').addEventListener('click',()=>{selected=null;cards.forEach(c=>c.classList.remove('selected'));document.getElementById('picked').innerHTML='<div class="picked-empty">Здесь появится выбранный Промокотик</div>';document.getElementById('selectionText').textContent='Нажми «Выбрать» на карточке, чтобы посмотреть концепцию крупнее. Можно переключаться между вариантами и сравнивать их.';notify('Выбор сброшен');});
+document.getElementById('copyChoice').addEventListener('click',async()=>{if(!selected){notify('Сначала выбери концепцию');return}const txt='Промокотик — выбранное направление: '+selected.dataset.title+'. Сохраняем исходную внешность персонажа, меняем только визуальную подачу.';try{await navigator.clipboard.writeText(txt);notify('Описание выбора скопировано')}catch(e){notify(txt)}});
+</script>
+</body></html>
